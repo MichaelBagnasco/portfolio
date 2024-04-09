@@ -1,0 +1,9 @@
+{
+  "name": "link-share",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/link-share/src",
+  "projectType": "application",
+  "tags": ["type:app", "scope:link-share"],
+  "// targets": "to see all targets run: nx show project link-share --web",
+  "targets": {}
+}

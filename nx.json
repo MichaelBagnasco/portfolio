@@ -1,14 +1,56 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
-      "default"
+      "default",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/eslint.config.js"
     ],
     "sharedGlobals": []
   },
-  "nxCloudAccessToken": "N2I2NzhiYmQtNTY4OC00NWFiLWIxOGItMGQwZGRjMWM0YmE5fHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "N2I2NzhiYmQtNTY4OC00NWFiLWIxOGItMGQwZGRjMWM0YmE5fHJlYWQtd3JpdGU=",
+  "plugins": [
+    {
+      "plugin": "@nx/vite/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "previewTargetName": "preview",
+        "testTargetName": "test",
+        "serveTargetName": "serve",
+        "serveStaticTargetName": "serve-static"
+      }
+    },
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    },
+    {
+      "plugin": "@nx/playwright/plugin",
+      "options": {
+        "targetName": "e2e"
+      }
+    }
+  ],
+  "generators": {
+    "@nx/react": {
+      "application": {
+        "babel": true,
+        "style": "tailwind",
+        "linter": "eslint",
+        "bundler": "vite"
+      },
+      "component": {
+        "style": "tailwind"
+      },
+      "library": {
+        "style": "tailwind",
+        "linter": "eslint"
+      }
+    }
+  }
 }
